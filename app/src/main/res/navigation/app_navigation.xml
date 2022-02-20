@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/start_Page">
+
+    <fragment
+        android:id="@+id/start_Page"
+        android:name="com.example.final_project_eecs_1022.Start_Page"
+        android:label="fragment_start__page"
+        tools:layout="@layout/fragment_start__page" >
+        <action
+            android:id="@+id/action_start_Page_to_dictionaryHomePage"
+            app:destination="@id/dictionaryHomePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/dictionaryHomePage"
+        android:name="com.example.final_project_eecs_1022.dictionaryHomePage"
+        android:label="fragment_dictionary_home_page"
+        tools:layout="@layout/fragment_dictionary_home_page" />
+</navigation>
