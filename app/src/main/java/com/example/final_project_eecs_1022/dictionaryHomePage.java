@@ -1,12 +1,11 @@
 package com.example.final_project_eecs_1022;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +24,6 @@ public class dictionaryHomePage extends Fragment {
     private String mParam2;
 
     public dictionaryHomePage() {
-        // Required empty public constructor
     }
 
     /**

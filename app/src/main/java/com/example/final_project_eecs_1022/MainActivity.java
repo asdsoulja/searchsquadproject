@@ -1,6 +1,8 @@
 package com.example.final_project_eecs_1022;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.ActivityNavigator;
 import androidx.navigation.Navigation;
 
 import android.os.Bundle;
@@ -14,6 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void enterDictionary(View view) {
-        Navigation.findNavController(view).navigate(R.id.dictionaryHomePage);
+        Navigation.findNavController(view).navigate(R.id.action_start_Page_to_dictionaryHomePage);
     }
 }

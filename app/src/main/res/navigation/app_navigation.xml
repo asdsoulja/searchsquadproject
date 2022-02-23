@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_start__page" >
         <action
             android:id="@+id/action_start_Page_to_dictionaryHomePage"
-            app:destination="@id/dictionaryHomePage" />
+            app:destination="@id/dictionaryHomePage"
+            app:enterAnim="@anim/to_right"
+            app:popUpTo="@id/dictionaryHomePage"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/dictionaryHomePage"
