@@ -4,14 +4,16 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
+import java.io.IOException;
+import java.util.ArrayList;
+
+
 public class ExampleUnitTest {
+    Brain b = new Brain();
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void SearchTest(){
+        ArrayList[] test = b.Search("Abandon");
+        assertEquals(test[0].get(0),"To cast or drive out; to banish; to expel; to reject.");
     }
+
 }
