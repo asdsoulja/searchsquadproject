@@ -9,11 +9,17 @@ import java.util.ArrayList;
 
 
 public class ExampleUnitTest {
-    Brain b = new Brain();
     @Test
     public void SearchTest(){
-        ArrayList[] test = b.Search("Abandon");
-        assertEquals(test[0].get(0),"To cast or drive out; to banish; to expel; to reject.");
+        ArrayList[] test = Brain.Search("Zoanthus");
+        assertEquals(test[0].get(0),"A genus of Actinaria, including numerous species, found mostly in tropical seas. The zooids or polyps resemble small, elongated actinias united together at their bases by fleshy stolons, and thus forming extensive groups. The tentacles are small and bright colored.");
+    }
+    @Test
+    public void AddTest(){
+        String[] toAdd = new String[]{"Misha", "N.", "Someone who is awesome"};
+        Brain.Add(toAdd);
+        ArrayList[] test = Brain.Search("Misha");
+        assertEquals(test[0].get(0),"Someone who is awesome");
     }
 
 }
