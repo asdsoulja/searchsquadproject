@@ -36,6 +36,7 @@ public class Brain {
         ArrayList<String> types = new ArrayList();
 
         try {
+            
             CSVReader reader = new CSVReader(new FileReader("src/main/res/dictionary.csv"));
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
