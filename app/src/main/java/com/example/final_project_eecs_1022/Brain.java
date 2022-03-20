@@ -1,18 +1,25 @@
 package com.example.final_project_eecs_1022;
+import android.view.View;
+
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileReader;
+import android.os.Bundle;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
+import android.content.res.AssetManager;
+import android.content.Context;
 public class Brain {
 
 
@@ -31,13 +38,14 @@ public class Brain {
         If things are both adjectives and nouns this becomes useful.
 
      */
-    public static ArrayList[] Search(String str){
+    public static ArrayList[] Search(String str, Context context){
         ArrayList<String> defintions = new ArrayList();
         ArrayList<String> types = new ArrayList();
 
         try {
-            
-            CSVReader reader = new CSVReader(new FileReader("src/main/res/dictionary.csv"));
+            FileInputStream file = context.openFileInput("dictionary.csv");
+            InputStreamReader getDictionary = new InputStreamReader(file);
+            CSVReader reader = new CSVReader(getDictionary);
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
                 // nextLine[] is an array of values from the line
@@ -47,7 +55,7 @@ public class Brain {
                 }
             }
         } catch (IOException | CsvValidationException e) {
-            System.out.println("File not found");
+            e.printStackTrace();
         }
         ArrayList[] RES = new ArrayList[2];
         RES[0] = defintions;
@@ -55,11 +63,19 @@ public class Brain {
         return RES;
     }
 
-    public static void Add(String[] toAdd){
+    public static void Add(String[] toAdd, Context context){
 
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("src/main/res/temp_dictionary.csv"));
-            CSVReader reader = new CSVReader(new FileReader("src/main/res/dictionary.csv"));
+            FileInputStream file = context.openFileInput("dictionary.csv");
+            InputStreamReader getDictionary = new InputStreamReader(file);
+
+
+
+            String internalOutDir = context.getFilesDir().getAbsolutePath();
+            File internalDictionary = new File(internalOutDir, "temp_dictionary.csv");
+
+            CSVWriter writer = new CSVWriter(new FileWriter(internalDictionary));
+            CSVReader reader = new CSVReader(getDictionary);
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
                     writer.writeNext(nextLine);
@@ -74,14 +90,12 @@ public class Brain {
 
 
         // Once everything is complete, delete old file..
-        File oldFile = new File("src/main/res/dictionary.csv");
+        File oldFile = new File(context.getFilesDir().getAbsolutePath() + "/" + "dictionary.csv");
         oldFile.delete();
 
         // And rename tmp file's name to old file name
-        File newFile = new File("src/main/res/temp_dictionary.csv");
+        File newFile = new File(context.getFilesDir().getAbsolutePath() + "/" + "temp_dictionary.csv");
         newFile.renameTo(oldFile);
-
-
 
     }
 
