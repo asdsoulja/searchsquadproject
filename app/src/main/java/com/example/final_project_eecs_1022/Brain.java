@@ -47,11 +47,25 @@ public class Brain {
             InputStreamReader getDictionary = new InputStreamReader(file);
             CSVReader reader = new CSVReader(getDictionary);
             String[] nextLine;
+            boolean checkInDictionary = false;
             while ((nextLine = reader.readNext()) != null) {
                 // nextLine[] is an array of values from the line
                 if(nextLine[0].equals(str)){
                     types.add(nextLine[1]);
                     defintions.add(nextLine[2]);
+                    checkInDictionary = true;
+                }
+            }
+            if (!checkInDictionary){
+                System.out.println("Word not found in main dictionary, searching in user dictionary");
+                FileInputStream userFile = context.openFileInput("user-dictionary.csv");
+                InputStreamReader getUserDictionary = new InputStreamReader(userFile);
+                CSVReader userFileReader = new CSVReader(getUserDictionary);
+                while((nextLine = userFileReader.readNext()) != null){
+                    if (nextLine[0].equals(str)){
+                        types.add(nextLine[1]);
+                        defintions.add(nextLine[2]);
+                    }
                 }
             }
         } catch (IOException | CsvValidationException e) {
@@ -66,13 +80,11 @@ public class Brain {
     public static void Add(String[] toAdd, Context context){
 
         try {
-            FileInputStream file = context.openFileInput("dictionary.csv");
+            FileInputStream file = context.openFileInput("user-dictionary.csv");
             InputStreamReader getDictionary = new InputStreamReader(file);
 
-
-
             String internalOutDir = context.getFilesDir().getAbsolutePath();
-            File internalDictionary = new File(internalOutDir, "temp_dictionary.csv");
+            File internalDictionary = new File(internalOutDir, "user-dictionary.csv");
 
             CSVWriter writer = new CSVWriter(new FileWriter(internalDictionary));
             CSVReader reader = new CSVReader(getDictionary);
@@ -87,16 +99,6 @@ public class Brain {
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
         }
-
-
-        // Once everything is complete, delete old file..
-        File oldFile = new File(context.getFilesDir().getAbsolutePath() + "/" + "dictionary.csv");
-        oldFile.delete();
-
-        // And rename tmp file's name to old file name
-        File newFile = new File(context.getFilesDir().getAbsolutePath() + "/" + "temp_dictionary.csv");
-        newFile.renameTo(oldFile);
-
     }
 
 }

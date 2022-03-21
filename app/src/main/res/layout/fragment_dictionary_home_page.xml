@@ -10,21 +10,21 @@
         android:id="@+id/enterWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
         android:hint="@string/search_for_word"
         android:importantForAutofill="no"
+        android:inputType="textAutoCorrect"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        android:fontFamily="sans-serif-condensed-light"
-        android:backgroundTint="@color/black"
-        android:inputType="textAutoCorrect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintVertical_bias="0.248" />
 
     <Button
         android:id="@+id/startSearchButton"
@@ -39,4 +39,18 @@
         app:layout_constraintTop_toBottomOf="@+id/enterWord"
         app:layout_constraintVertical_bias="0.071"
         tools:ignore="UsingOnClickInXml" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="displayUserWords"
+        android:text="Words"
+        app:layout_constraintBottom_toTopOf="@+id/enterWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.542" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

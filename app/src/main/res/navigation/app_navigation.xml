@@ -21,5 +21,14 @@
         android:id="@+id/dictionaryHomePage"
         android:name="com.example.final_project_eecs_1022.dictionaryHomePage"
         android:label="fragment_dictionary_home_page"
-        tools:layout="@layout/fragment_dictionary_home_page" />
+        tools:layout="@layout/fragment_dictionary_home_page" >
+        <action
+            android:id="@+id/action_dictionaryHomePage_to_displayUserWords"
+            app:destination="@id/displayUserWords" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayUserWords"
+        android:name="com.example.final_project_eecs_1022.displayUserWords"
+        android:label="fragment_display_user_words"
+        tools:layout="@layout/fragment_display_user_words" />
 </navigation>

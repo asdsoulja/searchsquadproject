@@ -39,10 +39,18 @@ public class MainActivity extends AppCompatActivity {
         CopyAssetsToInternalStorage();
     }
 
+
+    public void displayUserWords(View view) {
+        Navigation.findNavController(view).navigate(R.id.action_dictionaryHomePage_to_displayUserWords);
+    }
+
+
     public void getWord(View view) {
         EditText inputWord = findViewById(R.id.enterWord);
         ArrayList[] definitionArray;
         definitionArray = Brain.Search(inputWord.getText().toString(), getApplicationContext());
+        String[] addWord = {"testWord,", "a,", "a test word,"};
+        Brain.Add(addWord, getApplicationContext());
         for (int i=0; i<definitionArray.length; i++){
             System.out.println(definitionArray[i]);
         }
@@ -52,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     public void CopyAssetsToInternalStorage() {
         if (!isFilePresent()){
             try{
+                System.out.println("Database not found in internal storage! Copying assets...");
                 AssetManager getDictionaryFromAsset = getAssets();
                 InputStream input = getDictionaryFromAsset.open("dictionary.csv");
 
@@ -68,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 input.close();
                 outputDictionary.close();
-
-
+                System.out.println("Asset copy complete");
+                System.out.println("Creating user dictionary file...");
+                File userDictionaryFile = new File(getApplicationContext().getFilesDir().getAbsolutePath(), "user-dictionary.csv");
+                userDictionaryFile.createNewFile();
+                System.out.println("User file created!");
 
             }catch (IOException exception){
                 System.out.println(exception);
