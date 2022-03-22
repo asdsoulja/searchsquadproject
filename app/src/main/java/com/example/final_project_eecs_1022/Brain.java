@@ -113,8 +113,6 @@ public class Brain {
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
         }
-
-
     }
 
 }

@@ -70,6 +70,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CopyAssetsToInternalStorage() {
+        if (!checkUserDictionary()){
+            System.out.println("User Dictionary missing! Creating new one....");
+            String internalDir = getApplicationContext().getFilesDir().getAbsolutePath();
+            File createUserDictionary = new File(internalDir,"user-dictionary.csv");
+            try {
+                createUserDictionary.createNewFile();
+                String[] addExample = {"Example Word","EX","This is a example word"};
+                for (int i=1; i<5; i++){
+                    String[] addExampleTemp = addExample.clone();
+                    addExampleTemp[0] = addExampleTemp[0] + " " + String.valueOf(i);
+                    Brain.Add(addExampleTemp, getApplicationContext());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("User Dictionary is present, do nothing");
+        }
         if (!isFilePresent()){
             try{
                 System.out.println("Database not found in internal storage! Copying assets...");
@@ -95,12 +113,17 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(exception);
             }
         }else{
-            System.out.println("File is present, do nothing");
+            System.out.println("Main Dictionary is present, do nothing");
         }
     }
     public boolean isFilePresent() {
         String path = getApplicationContext().getFilesDir().getAbsolutePath() + "/" + "dictionary.csv";
         File file = new File(path);
+        return file.exists();
+    }
+    public boolean checkUserDictionary(){
+        String path = getApplicationContext().getFilesDir().getAbsolutePath() + "/"+"user-dictionary.csv";
+        File file =  new File(path);
         return file.exists();
     }
 
