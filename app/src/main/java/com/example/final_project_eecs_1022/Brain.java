@@ -1,5 +1,4 @@
 package com.example.final_project_eecs_1022;
-import android.view.View;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
@@ -7,19 +6,17 @@ import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileReader;
-import android.os.Bundle;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import android.content.res.AssetManager;
+
 import android.content.Context;
+import android.os.Environment;
+
 public class Brain {
 
 
@@ -38,7 +35,7 @@ public class Brain {
         If things are both adjectives and nouns this becomes useful.
 
      */
-    public static ArrayList[] Search(String str, Context context){
+    public static ArrayList[] Search(String str, Context context) {
         ArrayList<String> defintions = new ArrayList();
         ArrayList<String> types = new ArrayList();
 
@@ -50,19 +47,19 @@ public class Brain {
             boolean checkInDictionary = false;
             while ((nextLine = reader.readNext()) != null) {
                 // nextLine[] is an array of values from the line
-                if(nextLine[0].equals(str)){
+                if (nextLine[0].equals(str)) {
                     types.add(nextLine[1]);
                     defintions.add(nextLine[2]);
                     checkInDictionary = true;
                 }
             }
-            if (!checkInDictionary){
+            if (!checkInDictionary) {
                 System.out.println("Word not found in main dictionary, searching in user dictionary");
                 FileInputStream userFile = context.openFileInput("user-dictionary.csv");
                 InputStreamReader getUserDictionary = new InputStreamReader(userFile);
                 CSVReader userFileReader = new CSVReader(getUserDictionary);
-                while((nextLine = userFileReader.readNext()) != null){
-                    if (nextLine[0].equals(str)){
+                while ((nextLine = userFileReader.readNext()) != null) {
+                    if (nextLine[0].equals(str)) {
                         types.add(nextLine[1]);
                         defintions.add(nextLine[2]);
                     }
@@ -77,28 +74,47 @@ public class Brain {
         return RES;
     }
 
-    public static void Add(String[] toAdd, Context context){
+    public static ArrayList<String> getUserDictionaryAsArray(Context context) {
 
+        ArrayList<String> userWords = new ArrayList<>();
         try {
-            FileInputStream file = context.openFileInput("user-dictionary.csv");
-            InputStreamReader getDictionary = new InputStreamReader(file);
-
-            String internalOutDir = context.getFilesDir().getAbsolutePath();
-            File internalDictionary = new File(internalOutDir, "user-dictionary.csv");
-
-            CSVWriter writer = new CSVWriter(new FileWriter(internalDictionary));
-            CSVReader reader = new CSVReader(getDictionary);
+            FileInputStream userFile = context.openFileInput("user-dictionary.csv");
+            InputStreamReader getUserDictionary = new InputStreamReader(userFile);
+            CSVReader readUserDictionary = new CSVReader(getUserDictionary);
             String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                    writer.writeNext(nextLine);
-                }
-            writer.writeNext(toAdd);
-            writer.close();
-            reader.close();
-
+            while ((nextLine = readUserDictionary.readNext()) != null) {
+                userWords.add(nextLine[0]);
+            }
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
         }
+        return userWords;
+    }
+
+    public static void Add(String[] toAdd, Context context) {
+        CSVWriter writeToUserDictionary = null;
+        try {
+            File writeToTempDictionary = new File(context.getFilesDir()+"/user-dictionary-temp.csv");
+            writeToUserDictionary = new CSVWriter(new FileWriter(writeToTempDictionary));
+            FileInputStream getInputStream = context.openFileInput("user-dictionary.csv");
+            InputStreamReader readDictionary = new InputStreamReader(getInputStream);
+            CSVReader readingDictionary = new CSVReader(readDictionary);
+            String[] nextLine;
+            while ((nextLine = readingDictionary.readNext())!= null){
+                writeToUserDictionary.writeNext(nextLine);
+            }
+            writeToUserDictionary.writeNext(toAdd);
+            writeToUserDictionary.close();
+            readingDictionary.close();
+            File oldFile = new File (context.getFilesDir()+"/user-dictionary.csv");
+            oldFile.delete();
+            File newFile = new File (context.getFilesDir()+"/user-dictionary-temp.csv");
+            newFile.renameTo(oldFile);
+        } catch (IOException | CsvValidationException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }

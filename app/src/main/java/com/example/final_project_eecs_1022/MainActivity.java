@@ -11,7 +11,9 @@ import android.os.Environment;
 import android.os.FileUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.File;
@@ -28,10 +30,13 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class MainActivity extends AppCompatActivity {
+    String[] dictionaryArray;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     public void enterDictionary(View view) {
@@ -39,9 +44,18 @@ public class MainActivity extends AppCompatActivity {
         CopyAssetsToInternalStorage();
     }
 
-
     public void displayUserWords(View view) {
         Navigation.findNavController(view).navigate(R.id.action_dictionaryHomePage_to_displayUserWords);
+
+        ArrayList<String> getUserDict = Brain.getUserDictionaryAsArray(getApplicationContext());
+        dictionaryArray = new String[getUserDict.size()];
+        for (int i=0; i< dictionaryArray.length; i++){
+            dictionaryArray[i] = getUserDict.get(i);
+        }
+        for (int i=0; i< dictionaryArray.length; i++){
+            System.out.println(dictionaryArray[i]);
+        }
+
     }
 
 
@@ -49,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         EditText inputWord = findViewById(R.id.enterWord);
         ArrayList[] definitionArray;
         definitionArray = Brain.Search(inputWord.getText().toString(), getApplicationContext());
-        String[] addWord = {"testWord,", "a,", "a test word,"};
-        Brain.Add(addWord, getApplicationContext());
         for (int i=0; i<definitionArray.length; i++){
             System.out.println(definitionArray[i]);
         }
@@ -67,9 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 String internalOutDir = getApplicationContext().getFilesDir().getAbsolutePath();
                 File internalDictionary = new File(internalOutDir, "dictionary.csv");
                 OutputStream outputDictionary = new FileOutputStream(internalDictionary);
-
-
-
                 byte[] buffer = new byte[1024];
                 int read;
                 while((read = input.read(buffer)) != -1){
@@ -82,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 File userDictionaryFile = new File(getApplicationContext().getFilesDir().getAbsolutePath(), "user-dictionary.csv");
                 userDictionaryFile.createNewFile();
                 System.out.println("User file created!");
-
             }catch (IOException exception){
                 System.out.println(exception);
             }
@@ -94,5 +102,9 @@ public class MainActivity extends AppCompatActivity {
         String path = getApplicationContext().getFilesDir().getAbsolutePath() + "/" + "dictionary.csv";
         File file = new File(path);
         return file.exists();
+    }
+
+    public String[] getDictionaryArray(){
+        return dictionaryArray;
     }
 }
