@@ -105,10 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 input.close();
                 outputDictionary.close();
                 System.out.println("Asset copy complete");
-                System.out.println("Creating user dictionary file...");
-                File userDictionaryFile = new File(getApplicationContext().getFilesDir().getAbsolutePath(), "user-dictionary.csv");
-                userDictionaryFile.createNewFile();
-                System.out.println("User file created!");
             }catch (IOException exception){
                 System.out.println(exception);
             }
