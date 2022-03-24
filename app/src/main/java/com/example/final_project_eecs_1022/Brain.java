@@ -91,6 +91,7 @@ public class Brain {
         return userWords;
     }
 
+
     public static void Add(String[] toAdd, Context context) {
         CSVWriter writeToUserDictionary = null;
         try {
@@ -114,5 +115,4 @@ public class Brain {
             e.printStackTrace();
         }
     }
-
 }

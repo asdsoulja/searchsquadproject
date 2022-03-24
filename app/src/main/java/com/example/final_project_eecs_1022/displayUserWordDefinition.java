@@ -3,27 +3,20 @@ package com.example.final_project_eecs_1022;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link displayUserWords#newInstance} factory method to
+ * Use the {@link displayUserWordDefinition#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class displayUserWords extends Fragment implements AdapterView.OnItemClickListener {
+public class displayUserWordDefinition extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,12 +26,8 @@ public class displayUserWords extends Fragment implements AdapterView.OnItemClic
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ListView lvView;
-    View root;
-    public String wordClicked;
 
-
-    public displayUserWords() {
+    public displayUserWordDefinition() {
         // Required empty public constructor
     }
 
@@ -48,11 +37,11 @@ public class displayUserWords extends Fragment implements AdapterView.OnItemClic
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment displayUserWords.
+     * @return A new instance of fragment displayUserWordDefinition.
      */
     // TODO: Rename and change types and number of parameters
-    public static displayUserWords newInstance(String param1, String param2) {
-        displayUserWords fragment = new displayUserWords();
+    public static displayUserWordDefinition newInstance(String param1, String param2) {
+        displayUserWordDefinition fragment = new displayUserWordDefinition();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,30 +56,20 @@ public class displayUserWords extends Fragment implements AdapterView.OnItemClic
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_display_user_words, container, false);
-        lvView = root.findViewById(R.id.lvWords);
-        String[] newStrings = ((MainActivity) getActivity()).getDictionaryArray();
-        ArrayAdapter<String> lvdata = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,newStrings);
-        lvView.setAdapter(lvdata);
-        lvView.setOnItemClickListener(this);
-        this.root = root;
+        View root = inflater.inflate(R.layout.fragment_display_user_word_definition, container, false);
+        TextView displayWord = (TextView) root.findViewById(R.id.displayWordClicked);
+        TextView wordType = (TextView) root.findViewById(R.id.displayWordType);
+        TextView wordDefinition = (TextView) root.findViewById(R.id.displayDefinition);
+        displayWord.setText(getArguments().getString("wordClicked"));
+        ArrayList [] getUserDefinition = Brain.Search(getArguments().getString("wordClicked"),getContext());
+        wordType.setText(String.valueOf((getUserDefinition[1])));
+        wordDefinition.setText(String.valueOf((getUserDefinition[0].get(0))));
         return root;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String wordClicked = adapterView.getItemAtPosition(i).toString();
-        Bundle bundle = new Bundle();
-        bundle.putString("wordClicked",wordClicked);
-        Navigation.findNavController(root).navigate(R.id.action_displayUserWords_to_displayUserWordDefinition,bundle);
-        System.out.println(wordClicked);
 
     }
 }

@@ -29,13 +29,20 @@
             app:popExitAnim="@anim/to_left"
             app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/displayUserWords"
+    <fragment android:id="@+id/displayUserWords"
         android:name="com.example.final_project_eecs_1022.displayUserWords"
         android:label="fragment_display_user_words"
         tools:layout="@layout/fragment_display_user_words" >
         <action
-            android:id="@+id/action_displayUserWords_to_dictionaryHomePage"
-            app:destination="@id/dictionaryHomePage" />
+            android:id="@+id/action_displayUserWords_to_displayUserWordDefinition"
+            app:destination="@id/displayUserWordDefinition"
+            app:enterAnim="@anim/to_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
+    <fragment
+        android:id="@+id/displayUserWordDefinition"
+        android:name="com.example.final_project_eecs_1022.displayUserWordDefinition"
+        android:label="fragment_display_user_word_definition"
+        tools:layout="@layout/fragment_display_user_word_definition"
+        />
 </navigation>

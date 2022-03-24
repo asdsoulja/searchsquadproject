@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i=1; i<5; i++){
                     String[] addExampleTemp = addExample.clone();
                     addExampleTemp[0] = addExampleTemp[0] + " " + String.valueOf(i);
+                    addExampleTemp[2] = addExampleTemp[2] + " " + String.valueOf(i);
                     Brain.Add(addExampleTemp, getApplicationContext());
                 }
             } catch (IOException e) {
