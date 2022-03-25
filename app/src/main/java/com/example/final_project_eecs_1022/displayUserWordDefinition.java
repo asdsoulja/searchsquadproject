@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,7 @@ public class displayUserWordDefinition extends Fragment {
         ArrayList [] getUserDefinition = Brain.searchInUserDictionary(getArguments().getString("wordClicked"),getContext());
         wordType.setText(String.valueOf((getUserDefinition[1].get(0))));
         wordDefinition.setText(String.valueOf((getUserDefinition[0].get(0))));
+        wordDefinition.setMovementMethod(new ScrollingMovementMethod());
         return root;
-
     }
 }

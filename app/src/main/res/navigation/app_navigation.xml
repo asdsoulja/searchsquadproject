@@ -28,6 +28,11 @@
             app:enterAnim="@anim/to_right"
             app:popExitAnim="@anim/to_left"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_dictionaryHomePage_to_addWordFragment"
+            app:destination="@id/addWordFragment"
+            app:enterAnim="@anim/to_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment android:id="@+id/displayUserWords"
         android:name="com.example.final_project_eecs_1022.displayUserWords"
@@ -45,4 +50,9 @@
         android:label="fragment_display_user_word_definition"
         tools:layout="@layout/fragment_display_user_word_definition"
         />
+    <fragment
+        android:id="@+id/addWordFragment"
+        android:name="com.example.final_project_eecs_1022.addWordFragment"
+        android:label="fragment_add_word"
+        tools:layout="@layout/fragment_add_word" />
 </navigation>
