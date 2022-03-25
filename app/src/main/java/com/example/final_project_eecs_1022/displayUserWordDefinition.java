@@ -67,7 +67,7 @@ public class displayUserWordDefinition extends Fragment {
         TextView wordDefinition = (TextView) root.findViewById(R.id.displayDefinition);
         displayWord.setText(getArguments().getString("wordClicked"));
         ArrayList [] getUserDefinition = Brain.Search(getArguments().getString("wordClicked"),getContext());
-        wordType.setText(String.valueOf((getUserDefinition[1])));
+        wordType.setText(String.valueOf((getUserDefinition[1].get(0))));
         wordDefinition.setText(String.valueOf((getUserDefinition[0].get(0))));
         return root;
 
