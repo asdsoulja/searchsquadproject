@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 createUserDictionary.createNewFile();
                 String[] addExample = {"Example Word","EX","This is a example word"};
-                for (int i=1; i<5; i++){
+                for (int i=1; i<21; i++){
                     String[] addExampleTemp = addExample.clone();
                     addExampleTemp[0] = addExampleTemp[0] + " " + String.valueOf(i);
                     addExampleTemp[2] = addExampleTemp[2] + " " + String.valueOf(i);

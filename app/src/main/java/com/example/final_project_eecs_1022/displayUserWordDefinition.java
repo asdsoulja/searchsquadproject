@@ -3,12 +3,17 @@ package com.example.final_project_eecs_1022;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavHostController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -71,6 +76,16 @@ public class displayUserWordDefinition extends Fragment {
         wordType.setText(String.valueOf((getUserDefinition[1].get(0))));
         wordDefinition.setText(String.valueOf((getUserDefinition[0].get(0))));
         wordDefinition.setMovementMethod(new ScrollingMovementMethod());
+        Button removeButton = (Button) root.findViewById(R.id.removeWordButton);
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Brain.removeWordFromUserDictionary(getArguments().getString("wordClicked"),getContext());
+                Toast.makeText(getActivity(),"Removed Word",Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(root).popBackStack();
+                Navigation.findNavController(root).popBackStack();
+            }
+        });
         return root;
     }
 }

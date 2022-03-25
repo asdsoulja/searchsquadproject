@@ -33,6 +33,9 @@
             app:destination="@id/addWordFragment"
             app:enterAnim="@anim/to_right"
             app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_dictionaryHomePage_to_displaySearchResults"
+            app:destination="@id/displaySearchResults" />
     </fragment>
     <fragment android:id="@+id/displayUserWords"
         android:name="com.example.final_project_eecs_1022.displayUserWords"
@@ -49,10 +52,19 @@
         android:name="com.example.final_project_eecs_1022.displayUserWordDefinition"
         android:label="fragment_display_user_word_definition"
         tools:layout="@layout/fragment_display_user_word_definition"
-        />
+        >
+        <action
+            android:id="@+id/action_displayUserWordDefinition_to_dictionaryHomePage"
+            app:destination="@id/dictionaryHomePage" />
+    </fragment>
     <fragment
         android:id="@+id/addWordFragment"
         android:name="com.example.final_project_eecs_1022.addWordFragment"
         android:label="fragment_add_word"
         tools:layout="@layout/fragment_add_word" />
+    <fragment
+        android:id="@+id/displaySearchResults"
+        android:name="com.example.final_project_eecs_1022.displaySearchResults"
+        android:label="fragment_display_search_results"
+        tools:layout="@layout/fragment_display_search_results" />
 </navigation>

@@ -140,4 +140,31 @@ public class Brain {
             e.printStackTrace();
         }
     }
+
+    public static void removeWordFromUserDictionary(String removeWord, Context context){
+        CSVWriter writeToUserDictionary = null;
+        try {
+            File writeToTempDictionary = new File(context.getFilesDir() + "/user-dictionary-temp.csv");
+            writeToUserDictionary = new CSVWriter(new FileWriter(writeToTempDictionary));
+            FileInputStream getInputStream = context.openFileInput("user-dictionary.csv");
+            InputStreamReader readDictionary = new InputStreamReader(getInputStream);
+            CSVReader readingDictionary = new CSVReader(readDictionary);
+            String[] nextLine;
+            while ((nextLine = readingDictionary.readNext()) != null) {
+                if (nextLine[0].equals(removeWord)){
+                    System.out.println("Found remove word, not writting");
+                }else{
+                    writeToUserDictionary.writeNext(nextLine);
+                }
+            }
+            writeToUserDictionary.close();
+            readingDictionary.close();
+            File oldFile = new File(context.getFilesDir() + "/user-dictionary.csv");
+            oldFile.delete();
+            File newFile = new File(context.getFilesDir() + "/user-dictionary-temp.csv");
+            newFile.renameTo(oldFile);
+        } catch (IOException | CsvValidationException e) {
+            e.printStackTrace();
+        }
+    }
 }
