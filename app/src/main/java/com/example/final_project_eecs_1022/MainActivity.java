@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         String getInput = inputWord.getText().toString();
         this.searchArray = Brain.Search(getInput,getApplicationContext());
         if (this.searchArray[0].size() == 0){
-            Toast.makeText(this, "Unable to find word! Add definition?", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to find word in database", Toast.LENGTH_SHORT).show();
         }else{
             Bundle bundle = new Bundle();
             bundle.putString("input",getInput);
