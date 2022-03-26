@@ -25,12 +25,14 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.io.File.*;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class MainActivity extends AppCompatActivity {
     String[] dictionaryArray;
+    ArrayList[] searchArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +70,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void getWord(View view) {
         EditText inputWord = findViewById(R.id.enterWord);
-        ArrayList[] definitionArray;
-        definitionArray = Brain.Search(inputWord.getText().toString(), getApplicationContext());
-        for (int i=0; i<definitionArray.length; i++){
-            System.out.println(definitionArray[i]);
+        String getInput = inputWord.getText().toString();
+        this.searchArray = Brain.Search(getInput,getApplicationContext());
+        if (this.searchArray[0].size() == 0){
+            Toast.makeText(this, "Unable to find word! Add definition?", Toast.LENGTH_SHORT).show();
+        }else{
+            Bundle bundle = new Bundle();
+            bundle.putString("input",getInput);
+            Navigation.findNavController(view).navigate(R.id.action_dictionaryHomePage_to_displaySearchResults,bundle);
         }
-
     }
 
     public void CopyAssetsToInternalStorage() {
@@ -84,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 createUserDictionary.createNewFile();
                 String[] addExample = {"Example Word","EX","This is a example word"};
-                for (int i=1; i<21; i++){
+                for (int i=1; i<5; i++){
                     String[] addExampleTemp = addExample.clone();
                     addExampleTemp[0] = addExampleTemp[0] + " " + String.valueOf(i);
                     addExampleTemp[2] = addExampleTemp[2] + " " + String.valueOf(i);
@@ -133,5 +138,8 @@ public class MainActivity extends AppCompatActivity {
 
     public String[] getDictionaryArray(){
         return dictionaryArray;
+    }
+    public ArrayList[] getSearchArray(){
+        return this.searchArray;
     }
 }

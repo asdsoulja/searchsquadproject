@@ -3,18 +3,26 @@ package com.example.final_project_eecs_1022;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link displaySearchResults#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class displaySearchResults extends Fragment {
-
+public class displaySearchResults extends Fragment implements AdapterView.OnItemClickListener {
+    ListView lvView;
+    View root;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +67,29 @@ public class displaySearchResults extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_display_search_results, container, false);
+        View root = inflater.inflate(R.layout.fragment_display_search_results, container, false);
+
+
+        ArrayList[] getDictionaryResult = ((MainActivity) getActivity()).getSearchArray();
+        String[] displayAmountOfDefinitions = new String[getDictionaryResult[0].size()];
+        for (int i=0; i<getDictionaryResult[0].size(); i++){
+            displayAmountOfDefinitions[i] = "Tap me to see definition "+String.valueOf(i+1);
+            System.out.println(displayAmountOfDefinitions[i]);
+        }
+
+        lvView = root.findViewById(R.id.displayResultsList);
+        ArrayAdapter<String> lvdata = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,displayAmountOfDefinitions);
+        lvView.setAdapter(lvdata);
+        lvView.setOnItemClickListener(this);
+        this.root = root;
+        return root;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("getIndex", i);
+        System.out.println(bundle.get("getIndex"));
+        Navigation.findNavController(root).navigate(R.id.action_displaySearchResults_to_displaySearchDefinition,bundle);
     }
 }

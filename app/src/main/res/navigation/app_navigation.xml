@@ -66,5 +66,14 @@
         android:id="@+id/displaySearchResults"
         android:name="com.example.final_project_eecs_1022.displaySearchResults"
         android:label="fragment_display_search_results"
-        tools:layout="@layout/fragment_display_search_results" />
+        tools:layout="@layout/fragment_display_search_results" >
+        <action
+            android:id="@+id/action_displaySearchResults_to_displaySearchDefinition"
+            app:destination="@id/displaySearchDefinition" />
+    </fragment>
+    <fragment
+        android:id="@+id/displaySearchDefinition"
+        android:name="com.example.final_project_eecs_1022.displaySearchDefinition"
+        android:label="fragment_display_search_definition"
+        tools:layout="@layout/fragment_display_search_definition" />
 </navigation>
