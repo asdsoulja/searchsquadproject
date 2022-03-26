@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +76,12 @@ public class displaySearchResults extends Fragment implements AdapterView.OnItem
         for (int i=0; i<getDictionaryResult[0].size(); i++){
             displayAmountOfDefinitions[i] = "Tap me to see definition "+String.valueOf(i+1);
             System.out.println(displayAmountOfDefinitions[i]);
+        }
+        TextView displayStatus = (TextView) root.findViewById(R.id.multipleDefinitionsTextView);
+        if (getDictionaryResult[0].size() == 1){
+            displayStatus.setText("There seems to be one match. Tap to view it");
+        }else{
+            displayStatus.setText("Multiple Definitions! Tap one to view");
         }
 
         lvView = root.findViewById(R.id.displayResultsList);

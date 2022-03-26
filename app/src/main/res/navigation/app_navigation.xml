@@ -35,7 +35,9 @@
             app:popExitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_dictionaryHomePage_to_displaySearchResults"
-            app:destination="@id/displaySearchResults" />
+            app:destination="@id/displaySearchResults"
+            app:enterAnim="@anim/to_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment android:id="@+id/displayUserWords"
         android:name="com.example.final_project_eecs_1022.displayUserWords"
@@ -55,7 +57,9 @@
         >
         <action
             android:id="@+id/action_displayUserWordDefinition_to_dictionaryHomePage"
-            app:destination="@id/dictionaryHomePage" />
+            app:destination="@id/dictionaryHomePage"
+            app:enterAnim="@anim/to_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/addWordFragment"
@@ -69,7 +73,9 @@
         tools:layout="@layout/fragment_display_search_results" >
         <action
             android:id="@+id/action_displaySearchResults_to_displaySearchDefinition"
-            app:destination="@id/displaySearchDefinition" />
+            app:destination="@id/displaySearchDefinition"
+            app:enterAnim="@anim/to_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/displaySearchDefinition"
