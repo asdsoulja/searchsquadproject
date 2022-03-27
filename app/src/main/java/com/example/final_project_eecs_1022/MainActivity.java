@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void enterDictionary(View view) {
         Navigation.findNavController(view).navigate(R.id.action_start_Page_to_dictionaryHomePage);
+
         CopyAssetsToInternalStorage();
     }
     public void enterAddWordFragment(View view) {

@@ -11,6 +11,8 @@
         android:theme="@style/Theme.Final_Project_EECS_1022">
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
