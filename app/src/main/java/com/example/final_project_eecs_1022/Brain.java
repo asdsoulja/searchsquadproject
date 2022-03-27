@@ -63,6 +63,8 @@ public class Brain {
     public static ArrayList[] Search(String str, Context context) {
         ArrayList<String> defintions = new ArrayList();
         ArrayList<String> types = new ArrayList();
+        str = str.toLowerCase();
+        str = str.substring(0,1).toUpperCase() + str.substring(1);
 
         try {
             FileInputStream file = context.openFileInput("dictionary.csv");
