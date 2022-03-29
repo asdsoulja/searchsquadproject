@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.io.File.*;
 import android.content.Context;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -38,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.videoclip);
+        videoView.start();
     }
 
     public void enterDictionary(View view) {
