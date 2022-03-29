@@ -3,22 +3,15 @@ package com.example.final_project_eecs_1022;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.util.ArrayList;
-
 import android.content.Context;
-import android.os.Environment;
 
 public class Brain {
-
 
     /*
         This method looks through the dictionary and adds all the defintions to one array list, and all the types (noun,verb,etc) to the other. Then it outputs them in an array.
@@ -35,6 +28,7 @@ public class Brain {
         If things are both adjectives and nouns this becomes useful.
 
      */
+
     public static ArrayList[] searchInUserDictionary(String str, Context context) {
         ArrayList<String> defintions = new ArrayList();
         ArrayList<String> types = new ArrayList();

@@ -1,35 +1,19 @@
 package com.example.final_project_eecs_1022;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.ActivityNavigator;
 import androidx.navigation.Navigation;
-
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.FileUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.io.File.*;
-import android.content.Context;
 import android.widget.Toast;
 import android.widget.VideoView;
-
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 
 public class MainActivity extends AppCompatActivity {
     String[] dictionaryArray;
