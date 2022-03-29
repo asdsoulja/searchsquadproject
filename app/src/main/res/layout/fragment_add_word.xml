@@ -10,56 +10,69 @@
         android:id="@+id/enterWordToAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="72dp"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
         android:hint="Enter Word Here"
-        android:textSize="24sp"
-        android:fontFamily="sans-serif-condensed-light"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#546E7A"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="This definition will be added to the user dictionary."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.519" />
+
+    <EditText
+        android:id="@+id/enterWordDefinition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="top"
+        android:hint="Enter The Definition Here"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterWordTypeToAdd" />
 
     <EditText
         android:id="@+id/enterWordTypeToAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
-        android:textSize="24sp"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
         android:hint="Word Type Here"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#546E7A"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterWordToAdd" />
-
-    <EditText
-        android:id="@+id/enterWordDefinition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:gravity="top"
-        android:hint="Enter The Definition Here"
-        android:inputType="textMultiLine"
-        android:minHeight="48dp"
-        android:textColorHint="#546E7A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterWordTypeToAdd" />
 
     <Button
         android:id="@+id/addWordToDictionary"
@@ -74,17 +87,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:layout_height="wrap_content"
-        android:text="This definition will be added to the user dictionary."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

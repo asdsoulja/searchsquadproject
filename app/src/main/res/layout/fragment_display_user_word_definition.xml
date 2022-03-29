@@ -10,41 +10,15 @@
         android:id="@+id/word_clicked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="sans-serif-condensed-light"
         android:text="Word Clicked"
         android:textColor="@color/black"
-        android:fontFamily="sans-serif-condensed-light"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/displayWordClicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:text="@string/displayWordOnFragment"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/word_clicked" />
-
-    <TextView
-        android:id="@+id/word_Type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Word Type"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/displayWordClicked" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/displayWordType"
@@ -53,29 +27,44 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-condensed-light"
         android:layout_marginBottom="25dp"
+        android:fontFamily="sans-serif-condensed-light"
         android:text="@string/displayWordTypeOnFragment"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/Word_Definition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/word_Type" />
+
+    <TextView
+        android:id="@+id/word_Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Word Type"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/word_Type" />
+        app:layout_constraintTop_toBottomOf="@+id/displayWordClicked" />
 
     <TextView
         android:id="@+id/Word_Definition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="10dp"
-        android:text="Definition"
         android:fontFamily="sans-serif-condensed-light"
+        android:text="Definition"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displayWordType" />
 
@@ -84,18 +73,32 @@
         android:layout_width="331dp"
         android:layout_height="338dp"
         android:layout_marginTop="12dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         android:fontFamily="sans-serif-condensed-light"
         android:scrollbars="vertical"
         android:text="@string/displayWordDefinitionOnFragment"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Word_Definition"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.038" />
+
+    <TextView
+        android:id="@+id/displayWordClicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/displayWordOnFragment"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/word_clicked" />
 
     <Button
         android:id="@+id/removeWordButton"
