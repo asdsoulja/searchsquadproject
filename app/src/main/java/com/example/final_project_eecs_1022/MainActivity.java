@@ -28,6 +28,20 @@ public class MainActivity extends AppCompatActivity {
         videoView.start();
     }
 
+    @Override
+    public void onResume() {
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        super.onResume();
+        videoView.resume();
+    }
+
+    @Override
+    public void onPause() {
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        super.onPause();
+        videoView.suspend();
+    }
+
     public void enterDictionary(View view) {
         Navigation.findNavController(view).navigate(R.id.action_start_Page_to_dictionaryHomePage);
 
