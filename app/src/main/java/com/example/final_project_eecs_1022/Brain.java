@@ -69,7 +69,11 @@ public class Brain {
             while ((nextLine = reader.readNext()) != null) {
                 // nextLine[] is an array of values from the line
                 if (nextLine[0].equals(str)) {
-                    types.add(nextLine[1]);
+                    if (nextLine[1].equals("")){
+                        types.add("(No word type found in dictionary)");
+                    }else{
+                        types.add(nextLine[1]);
+                    }
                     defintions.add(nextLine[2]);
                     checkInDictionary = true;
                 }
