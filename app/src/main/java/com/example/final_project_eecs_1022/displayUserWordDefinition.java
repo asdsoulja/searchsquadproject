@@ -36,6 +36,7 @@ public class displayUserWordDefinition extends Fragment {
         displayWord.setText(getArguments().getString("wordClicked"));
         ArrayList [] getUserDefinition = Brain.searchInUserDictionary(getArguments().getString("wordClicked"),getContext());
         wordType.setText(String.valueOf((getUserDefinition[1].get(0))));
+
         wordDefinition.setText(String.valueOf((getUserDefinition[0].get(0))));
         wordDefinition.setMovementMethod(new ScrollingMovementMethod());
         Button removeButton = (Button) root.findViewById(R.id.removeWordButton);
