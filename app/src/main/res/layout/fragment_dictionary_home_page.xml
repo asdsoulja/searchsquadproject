@@ -9,19 +9,19 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="374dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-condensed-light"
-        android:text="Type any word in the search bar below.                 Press SEARCH to proceed."
+        android:text="Type any word in the search bar below. Press SEARCH to proceed. To go back to the previous page, press the back button below"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/enterWord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613" />
+        app:layout_constraintVertical_bias="0.606" />
 
     <Button
         android:id="@+id/addWord"
